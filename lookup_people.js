@@ -21,13 +21,12 @@ client.connect(err => {
     }
     console.log(`Found ${result.rows.length} by the name ${process.argv[2]}`);
     for (let i = 0; i < result.rows.length; i++) {
-      let bday = moment(result.rows[i].birthdate).format(YYYY - MM - DD);
-      console.log(bday);
-      // console.log(`- ${i + 1}: ${result.rows[i].first_name} ${result.rows[i].last_name}, born '${bday}'`);
+      console.log(
+        `- ${i + 1}: ${result.rows[i].first_name} ${result.rows[i].last_name}, born '${
+          result.rows[i].birthdate.toISOString().split('T')[0]
+        }'`
+      );
     }
-    // console.log()
-    //output: 1
-    // promise
     client.end();
   });
 });
